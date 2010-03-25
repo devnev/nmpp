@@ -16,14 +16,14 @@
  *  along with NMPP.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define BOOST_TEST_MODULE AutoMatrixTests
-#include <boost/test/included/unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 #include <boost/test/test_case_template.hpp>
 #include <boost/mpl/list.hpp>
+#include <complex>
 
 #include <nmpp/matrix.hpp>
 
-typedef boost::mpl::list<float, double, int> test_types;
+typedef boost::mpl::list< double, int, std::complex<float> > test_types;
 
 BOOST_AUTO_TEST_SUITE( AutoMatrixMembersSuite )
 
@@ -94,7 +94,6 @@ BOOST_AUTO_TEST_CASE_TEMPLATE( SwapWithEmpty, T, test_types )
 	BOOST_CHECK_EQUAL( m2.width(), 17 );
 	BOOST_CHECK_EQUAL( m2.height(), 5 );
 	BOOST_CHECK_EQUAL( m1.get(), ((T*)0) );
-	BOOST_CHECK_NE( m2.get(), ((T*)0) );
 	BOOST_CHECK_EQUAL( m2.get(), p );
 }
 

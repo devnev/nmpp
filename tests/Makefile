@@ -1,32 +1,31 @@
 default: test
 
+TESTS=auto_matrix_tests
+TEST_OBJECTS=$(TESTS:=.o)
+TEST_DEPS=$(TESTS:=.d)
+RM ?= rm -f
+
 CPPFLAGS=-I. -I../.. -DBOOST_TEST_DYN_LINK=1
 LDFLAGS=-lboost_unit_test_framework
 
-TESTS=auto_matrix_tests
-TEST_DEPS=$(TESTS:=.d)
-TEST_STAMPS=$(patsubst %,.%.stamp,$(TESTS))
+-include test_runner.d $(TEST_DEPS)
 
--include $(TEST_DEPS)
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LD_FLAGS) $(ARCH_FLAGS) $^ $(LOADLIBES) $(LDLIBS) -c -o $@ -MMD -MP
 
-$(TESTS): %: %.cpp
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LD_FLAGS) $(ARCH_FLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@ -MMD -MP
+test_runner: test_runner.o $(TEST_OBJECTS)
 
-$(TEST_STAMPS): .%.stamp: %
-	./$^ $(TEST_PARAMS) 2>&1 | tee $@
-
-build-tests: $(TESTS)
-
-run-tests: $(TEST_STAMPS)
+test_output: test_runner
+	./$^ `cat test_params` 2>&1 | tee $@ || true
 
 reset-tests:
-	rm -f $(TEST_STAMPS) || true
+	$(RM) test_output || true
 
-test: build-tests run-tests
+test:
+	@$(MAKE) reset-tests
+	@$(MAKE) test_output
 
 clean:
-	rm -f $(TESTS) || true
-	rm -f $(TEST_DEPS) || true
-	rm -f $(TEST_STAMPS) || true
+	$(RM) test_output test_runner test_runner.o $(TEST_OBJECTS) || true
 
-.PHONY: build-tests run-tests reset-tests test clean
+.PHONY: default reset-tests test clean

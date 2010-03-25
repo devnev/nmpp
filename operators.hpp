@@ -107,7 +107,7 @@ private:
 	} \
 	template<class LeftMatrixT, class RightMatrixT, class OutputT> \
 	void \
-	name (const LeftMatrixT& lhs, const RightMatrixT& rhs, OutputT output) { \
+	name (const LeftMatrixT& lhs, const RightMatrixT& rhs, OutputT& output) { \
 		copy_matrix(name (lhs, rhs), output); \
 	} \
 	/**/
@@ -126,7 +126,7 @@ MPP_DEF_BINARY_MATRIX_OP(mdiv, std::divides);
 	} \
 	template<class MatrixT, class OutputT> \
 	void \
-	name (const MatrixT& lhs, typename MatrixT::value_type rhs, OutputT output) { \
+	name (const MatrixT& lhs, typename MatrixT::value_type rhs, OutputT& output) { \
 		copy_matrix(name (lhs, rhs), output); \
 	} \
 	/**/

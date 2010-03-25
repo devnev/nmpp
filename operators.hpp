@@ -118,10 +118,10 @@ MPP_DEF_BINARY_MATRIX_OP(mdiv, std::divides);
 
 #define MPP_DEF_BINARY_SCALAR_OP(name, op_class) \
 	template<class MatrixT> \
-	detail::matrix_binary_op< typename MatrixT::matrix_reference, constant_matrix<typename MatrixT::value_type>, op_class <typename MatrixT::value_type> > \
+	detail::matrix_binary_op< MatrixT, constant_matrix<typename MatrixT::value_type>, op_class <typename MatrixT::value_type> > \
 	name (const MatrixT& lhs, typename MatrixT::value_type rhs) { \
 		typedef typename MatrixT::value_type value_type; \
-		return detail::matrix_binary_op< typename MatrixT::matrix_reference, constant_matrix<value_type>, op_class <value_type> >( \
+		return detail::matrix_binary_op< MatrixT, constant_matrix<value_type>, op_class <value_type> >( \
 				lhs, constant_matrix<value_type>(rhs), op_class <value_type>()); \
 	} \
 	template<class MatrixT, class OutputT> \
@@ -141,7 +141,7 @@ MPP_DEF_BINARY_SCALAR_OP(sdiv, std::divides)
 	name (const MatrixT& input) { \
 		typedef typename MatrixT::value_type value_type; \
 		value_type (*fun_ptr)(value_type) = function; \
-		return detail::matrix_unary_op<MatrixT, pointer_to_unary_function<value_type, value_type> >( \
+		return detail::matrix_unary_op< MatrixT, pointer_to_unary_function<value_type, value_type> >( \
 			input, pointer_to_unary_function<value_type, value_type>(fun_ptr)); \
 	} \
 	template<class MatrixT, class OutputT> \

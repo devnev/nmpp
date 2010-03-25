@@ -25,6 +25,8 @@
 #include <algorithm>
 #include <functional>
 
+namespace nmpp {
+
 namespace detail {
 
 template<class LeftMatrixT, class RightMatrixT, class BinaryOpT>
@@ -139,5 +141,7 @@ MPP_DEF_BINARY_SCALAR_OP(sdiv, std::divides)
 	} \
 	/**/
 MPP_DEF_UNARY_MATRIX_OP_PTR(mabs, std::abs)
+
+} // end namespace nmpp
 
 #endif // NMPP_OPERATORS_HPP

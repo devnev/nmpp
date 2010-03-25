@@ -21,6 +21,8 @@
 
 #include <cstddef>
 
+namespace nmpp {
+
 template<class InputT, class OutputT>
 void upsample_nearest(const InputT& input, OutputT& output)
 {
@@ -88,5 +90,7 @@ void upsample_bilinear(const InputT& input, OutputT& output)
 		}
 	}
 }
+
+} // end namespace nmpp
 
 #endif // NMPP_UPSAMPLE_HPP

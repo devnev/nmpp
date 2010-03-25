@@ -21,6 +21,8 @@
 
 #include <cstddef>
 
+namespace nmpp {
+
 namespace detail {
 
 template<class MatrixT>
@@ -51,5 +53,7 @@ detail::transpose_op<MatrixT>
 transpose(const MatrixT& matrix) {
 	return detail::transpose_op<MatrixT>(matrix);
 }
+
+} // end namespace nmpp
 
 #endif // NMPP_TANSPOSE_HPP

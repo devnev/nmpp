@@ -23,10 +23,16 @@
 #include <algorithm>
 #include <cstddef>
 
+namespace nmpp {
+
+namespace detail {
+
 template<class T>
 struct add_const { typedef const T type; };
 template<class T>
 struct add_const<const T> { typedef T type; };
+
+} // end namespace detail
 
 template<class InputT, class OutputT>
 void copy_matrix(const InputT& input, OutputT& output)
@@ -141,13 +147,6 @@ private:
 	size_t _width, _height;
 };
 
-namespace std {
-	template<class T>
-	void swap(auto_matrix<T>& lhs, auto_matrix<T>& rhs) {
-		lhs.swap(rhs);
-	}
-}
-
 template<class T>
 class weak_matrix
 {
@@ -218,7 +217,7 @@ public:
 	typedef typename MatrixT::const_reference const_reference;
 	typedef typename MatrixT::array_type array_type;
 	typedef MatrixT matrix_type;
-	typedef typename add_const<matrix_type>::type const_matrix_type;
+	typedef typename detail::add_const<matrix_type>::type const_matrix_type;
 	typedef linear_matrix_view<MatrixT> this_type;
 	typedef this_type matrix_reference;
 
@@ -281,5 +280,14 @@ public:
 private:
 	value_type _constant;
 };
+
+} // end namespace nmpp
+
+namespace std {
+	template<class T>
+	void swap(nmpp::auto_matrix<T>& lhs, nmpp::auto_matrix<T>& rhs) {
+		lhs.swap(rhs);
+	}
+}
 
 #endif // NMPP_MATRIX_HPP

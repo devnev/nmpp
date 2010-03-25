@@ -23,6 +23,8 @@
 
 #include <nmpp/matrix.hpp>
 
+using namespace nmpp;
+
 typedef boost::mpl::list< double, int, std::complex<float> > test_types;
 
 BOOST_AUTO_TEST_SUITE( AutoMatrixMembersSuite )

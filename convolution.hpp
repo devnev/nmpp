@@ -22,6 +22,8 @@
 #include <cstddef>
 #include <cassert>
 
+namespace nmpp {
+
 namespace detail {
 
 template<class InputT, class KernelT>
@@ -89,5 +91,7 @@ void convolve(const InputT& input, const KernelT& kernel, size_t anchor_x, size_
 {
 	copy_matrix(convolve(input, kernel, anchor_x, anchor_y), output);
 }
+
+} // end namespace nmpp
 
 #endif // NMPP_CONVOLUTION_HPP

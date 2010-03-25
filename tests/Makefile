@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 default: test
 
-TESTS=auto_matrix_tests
+TESTS=auto_matrix_members
 TEST_OBJECTS=$(TESTS:=.o)
 TEST_DEPS=$(TESTS:=.d)
 RM ?= rm -f

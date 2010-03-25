@@ -27,7 +27,7 @@ using namespace nmpp;
 
 typedef boost::mpl::list< double, int, std::complex<float> > test_types;
 
-BOOST_AUTO_TEST_SUITE( AutoMatrixMembersSuite )
+BOOST_AUTO_TEST_SUITE( AutoMatrixMembers )
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( DefaultCtor, T, test_types )
 {

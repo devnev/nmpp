@@ -16,8 +16,8 @@
  *  along with NMPP.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NMPP_MATRIX_HPP
-#define NMPP_MATRIX_HPP
+#ifndef NMPP_COPY_MATRIX_HPP
+#define NMPP_COPY_MATRIX_HPP
 
 #include <cassert>
 #include <algorithm>
@@ -73,4 +73,4 @@ struct const_matrix_ref {
 
 } // end namespace nmpp
 
-#endif // NMPP_MATRIX_HPP
+#endif // NMPP_COPY_MATRIX_HPP

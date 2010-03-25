@@ -16,8 +16,8 @@
  *  along with NMPP.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NMPP_MATRIX_HPP
-#define NMPP_MATRIX_HPP
+#ifndef NMPP_WEAK_MATRIX_HPP
+#define NMPP_WEAK_MATRIX_HPP
 
 #include <cassert>
 #include <algorithm>
@@ -93,4 +93,4 @@ private:
 
 } // end namespace nmpp
 
-#endif // NMPP_MATRIX_HPP
+#endif // NMPP_WEAK_MATRIX_HPP

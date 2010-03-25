@@ -133,4 +133,4 @@ namespace std {
 	}
 }
 
-#endif // NMPP_MATRIX_HPP
+#endif // NMPP_AUTO_MATRIX_HPP

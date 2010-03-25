@@ -16,8 +16,8 @@
  *  along with NMPP.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NMPP_MATRIX_HPP
-#define NMPP_MATRIX_HPP
+#ifndef NMPP_SUB_MATRIX_HPP
+#define NMPP_SUB_MATRIX_HPP
 
 namespace nmpp {
 
@@ -185,3 +185,5 @@ limit(MatrixT& matrix, size_t width, size_t height) {
 }
 
 } // end namespace nmpp
+
+#endif // NMPP_SUB_MATRIX_HPP

@@ -32,13 +32,19 @@ namespace detail {
 template<class LeftMatrixT, class RightMatrixT, class BinaryOpT>
 class matrix_binary_op
 {
+	typedef LeftMatrixT left_type;
+	typedef RightMatrixT left_type;
+	typedef BinaryOpT op_type;
+	typedef typename detail::matrix_const_ref<left_type>::type left_reference;
+	typedef typename detail::matrix_const_ref<right_type>::type right_reference;
 public:
-	typedef typename BinaryOpT::result_type result_type;
+	typedef typename op_type::result_type result_type;
 	typedef result_type value_type;
 	typedef matrix_binary_op<LeftMatrixT, RightMatrixT, BinaryOpT> this_type;
-	typedef this_type matrix_reference;
+	typedef this_type matrix_ref;
+	typedef this_type const_matrix_ref;
 
-	matrix_binary_op(const LeftMatrixT& lhs, const RightMatrixT& rhs, const BinaryOpT& op)
+	matrix_binary_op(const left_type& lhs, const right_type& rhs, const op_type& op)
 		: _lhs(lhs), _rhs(rhs), _op(op)
 	{
 	}
@@ -53,21 +59,25 @@ public:
 	size_t height() const { return _lhs.height(); }
 
 private:
-	const typename LeftMatrixT::matrix_reference _lhs;
-	const typename RightMatrixT::matrix_reference _rhs;
+	left_reference _lhs;
+	right_reference _rhs;
 	BinaryOpT _op;
 };
 
 template<class MatrixT, class UnaryOpT>
 class matrix_unary_op
 {
+	typedef MatrixT right_type;
+	typedef UnaryOpT op_type;
+	typedef typename detail::matrix_const_ref<right_type>::type right_reference;
 public:
-	typedef typename UnaryOpT::result_type result_type;
+	typedef typename op_type::result_type result_type;
 	typedef result_type value_type;
 	typedef matrix_unary_op<MatrixT, UnaryOpT> this_type;
-	typedef this_type matrix_reference;
+	typedef this_type matrix_ref;
+	typedef this_type matrix_const_ref;
 
-	matrix_unary_op(const MatrixT& rhs, const UnaryOpT& op)
+	matrix_unary_op(const right_type& rhs, const op_type& op)
 		: _rhs(rhs), _op(op)
 	{
 	}
@@ -82,7 +92,7 @@ public:
 	size_t height() const { return _rhs.height(); }
 
 private:
-	const typename MatrixT::matrix_reference _rhs;
+	right_reference _rhs;
 	UnaryOpT _op;
 };
 

@@ -32,16 +32,18 @@ namespace nmpp {
 template<class MatrixT>
 class linear_matrix_view
 {
-	typedef typename MatrixT::matrix_reference target_reference;
+	typedef MatrixT matrix_type;
+	typedef typename detail::add_const<matrix_type>::type const_matrix_type;
+	typedef typename detail::matrix_ref<matrix_type>::type target_reference;
+
 public:
 	typedef typename MatrixT::value_type value_type;
 	typedef typename MatrixT::reference reference;
 	typedef typename MatrixT::const_reference const_reference;
 	typedef typename MatrixT::array_type array_type;
-	typedef MatrixT matrix_type;
-	typedef typename detail::add_const<matrix_type>::type const_matrix_type;
-	typedef linear_matrix_view<MatrixT> this_type;
+	typedef linear_matrix_view<matrix_type> this_type;
 	typedef this_type matrix_reference;
+	typedef linear_matrix_view<const_matrix_type> matrix_const_reference;
 
 	linear_matrix_view(const_matrix_type& matrix, size_t step = 1)
 		: _matrix(matrix), _start_x(0), _start_y(0), _step_x(step), _step_y(step) { }
@@ -78,10 +80,10 @@ private:
 };
 
 template<class MatrixT>
-linear_matrix_view<typename MatrixT::matrix_reference>
+linear_matrix_view<MatrixT>
 linear_matrix_filter(MatrixT& input, size_t start_x, size_t start_y, size_t step_x, size_t step_y)
 {
-	return linear_matrix_view<typename MatrixT::matrix_reference>(input, start_x, start_y, step_x, step_y);
+	return linear_matrix_view<MatrixT>(input, start_x, start_y, step_x, step_y);
 }
 
 template<class T>

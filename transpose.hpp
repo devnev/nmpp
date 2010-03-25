@@ -28,29 +28,36 @@ namespace detail {
 template<class MatrixT>
 class transpose_op
 {
+	typedef MatrixT matrix_type;
+	typedef typename add_const<matrix_type>::type const_matrix_type;
+	typedef detail::matrix_ref<matrix_type> target_reference;
 public:
 
 	typedef typename MatrixT::value_type value_type;
-	typedef transpose_op<MatrixT> this_type;
-	typedef this_type matrix_reference;
+	typedef typename MatrixT::reference reference;
+	typedef typename MatrixT::const_reference const_reference;
+	typedef transpose_op<matrix_type> this_type;
+	typedef this_type matrix_ref;
+	typedef transpose_op<const_matrix_type> matrix_const_ref;
 
-	transpose_op(const MatrixT& matrix) : _matrix(matrix) { }
+	transpose_op(MatrixT& matrix) : _matrix(matrix) { }
 	transpose_op(const transpose_op& other) : _matrix(other._matrix) { }
 
-	value_type operator()(size_t x, size_t y) const { return _matrix(y, x); }
+	reference operator()(size_t x, size_t y) { return _matrix(y, x); }
+	const_reference operator()(size_t x, size_t y) const { return _matrix(y, x); }
 
 	size_t width() const { return _matrix.height(); }
 	size_t height() const { return _matrix.width(); }
 
 private:
-	const typename MatrixT::matrix_reference _matrix;
+	target_reference _matrix;
 };
 
 } // end namespace detail
 
 template<class MatrixT>
 detail::transpose_op<MatrixT>
-transpose(const MatrixT& matrix) {
+transpose(MatrixT& matrix) {
 	return detail::transpose_op<MatrixT>(matrix);
 }
 

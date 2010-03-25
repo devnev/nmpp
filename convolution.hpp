@@ -29,11 +29,15 @@ namespace detail {
 template<class InputT, class KernelT>
 class convolve_op
 {
+	typedef typename detail::const_matrix_ref<InputT>::type const_input_ref;
+	typedef typename detail::const_matrix_ref<KernelT>::type const_kernel_ref;
+
 public:
 
 	typedef typename InputT::value_type value_type;
 	typedef convolve_op<InputT, KernelT> this_type;
-	typedef this_type matrix_reference;
+	typedef this_type matrix_ref;
+	typedef this_type matrix_const_ref;
 
 	convolve_op(const InputT& input, const KernelT& kernel, size_t anchor_x, size_t anchor_y)
 		: _input(input), _kernel(kernel), _anchor_x(anchor_x), _anchor_y(anchor_y)
@@ -72,9 +76,9 @@ public:
 	size_t height() const { return _input.height(); }
 
 private:
-	const typename InputT::matrix_reference _input;
-	const typename KernelT::matrix_reference _kernel;
-	size_t _anchor_x, _anchor_y;
+	const_input_ref _input;
+	const_kernel_ref _kernel;
+	const size_t _anchor_x, _anchor_y;
 };
 
 } // end namespace detail

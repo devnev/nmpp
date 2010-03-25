@@ -44,6 +44,31 @@ struct add_const { typedef const T type; };
 template<class T>
 struct add_const<const T> { typedef T type; };
 
+template<class T>
+struct is_const { enum { value = false }; };
+template<class T>
+struct is_const<const T> { enum { value = true }; };
+
+template<bool B, class T1, class T2>
+struct if_c { typedef T1 type; };
+template<class T1, class T2>
+struct if_c<false, T1, T2> { typedef T2 type; };
+
+template<class MatrixT>
+struct matrix_ref {
+	typedef typename if_c<is_const<MatrixT>::value,
+		typename MatrixT::matrix_const_ref,
+		typename MatrixT::matrix_ref
+	>::type type;
+};
+
+template<class MatrixT>
+struct const_matrix_ref {
+	typedef typename add_const<
+		typename matrix_ref<MatrixT>::type
+	>::type type;
+};
+
 } // end namespace detail
 
 } // end namespace nmpp

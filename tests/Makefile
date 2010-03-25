@@ -13,8 +13,7 @@ $(TESTS): %: %.cpp
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LD_FLAGS) $(ARCH_FLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@ -MMD -MP
 
 $(TEST_STAMPS): .%.stamp: %
-	./$^ $(TEST_PARAMS)
-	@touch $@
+	./$^ $(TEST_PARAMS) 2>&1 | tee $@
 
 build-tests: $(TESTS)
 

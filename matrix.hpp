@@ -99,7 +99,7 @@ public:
 			reset();
 	}
 	void reset(size_t width, size_t height, value_type value) {
-		reset(new T[width*height], width, height);
+		reset(width, height);
 		std::fill(_array, _array+_width*_height, value);
 	}
 	void reset() {

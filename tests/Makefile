@@ -1,3 +1,4 @@
+#!/usr/bin/make -f
 default: test
 
 TESTS=auto_matrix_tests
@@ -11,12 +12,12 @@ LDFLAGS=-lboost_unit_test_framework
 -include test_runner.d $(TEST_DEPS)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LD_FLAGS) $(ARCH_FLAGS) $^ $(LOADLIBES) $(LDLIBS) -c -o $@ -MMD -MP
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LD_FLAGS) $(ARCH_FLAGS) $< $(LOADLIBES) $(LDLIBS) -c -o $@ -MMD -MP
 
 test_runner: test_runner.o $(TEST_OBJECTS)
 
 test_output: test_runner
-	./$^ `cat test_params` 2>&1 | tee $@ || true
+	./$^ `cat test_params 2>/dev/null` 2>&1 | tee $@ || true
 
 reset-tests:
 	$(RM) test_output || true

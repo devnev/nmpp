@@ -27,31 +27,9 @@
 #include <nmpp/auto_matrix.hpp>
 #include <nmpp/weak_matrix.hpp>
 #include <nmpp/sub_matrix.hpp>
+#include <nmpp/uniform_matrix.hpp>
 #include <nmpp/operators.hpp>
 #include <nmpp/transpose.hpp>
 #include <nmpp/upsample.hpp>
-
-namespace nmpp {
-
-template<class T>
-class constant_matrix
-{
-public:
-	typedef T value_type;
-	typedef T& reference;
-	typedef const T& const_reference;
-	typedef constant_matrix<T> this_type;
-	typedef this_type matrix_reference;
-
-	constant_matrix(value_type constant) : _constant(constant) { }
-	constant_matrix(const this_type& other) : _constant(other._constant) { }
-
-	const_reference operator()(size_t x, size_t y) const { (void)x; (void)y; return _constant; }
-
-private:
-	value_type _constant;
-};
-
-} // end namespace nmpp
 
 #endif // NMPP_MATRIX_HPP

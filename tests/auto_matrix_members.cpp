@@ -21,7 +21,7 @@
 #include <boost/mpl/list.hpp>
 #include <complex>
 
-#include <nmpp/matrix.hpp>
+#include <nmpp/auto_matrix.hpp>
 
 using namespace nmpp;
 

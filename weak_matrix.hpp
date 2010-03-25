@@ -20,7 +20,6 @@
 #define NMPP_WEAK_MATRIX_HPP
 
 #include <cassert>
-#include <algorithm>
 #include <cstddef>
 
 #include <nmpp/copy_matrix.hpp>

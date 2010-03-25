@@ -19,7 +19,10 @@
 #ifndef NMPP_UNIFORM_MATRIX_HPP
 #define NMPP_UNIFORM_MATRIX_HPP
 
+#include <cstddef>
 #include <limits>
+
+#include <nmpp/copy_matrix.hpp>
 
 namespace nmpp {
 

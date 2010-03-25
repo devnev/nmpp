@@ -19,11 +19,13 @@
 #ifndef NMPP_OPERATORS_HPP
 #define NMPP_OPERATORS_HPP
 
-#include <cstdlib>
 #include <cstddef>
+#include <cstdlib>
 #include <cmath>
 #include <algorithm>
 #include <functional>
+
+#include <nmpp/copy_matrix.hpp>
 
 namespace nmpp {
 

@@ -19,6 +19,11 @@
 #ifndef NMPP_SUB_MATRIX_HPP
 #define NMPP_SUB_MATRIX_HPP
 
+#include <cassert>
+#include <cstddef>
+
+#include <nmpp/copy_matrix.hpp>
+
 namespace nmpp {
 
 namespace detail {

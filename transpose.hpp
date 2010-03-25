@@ -21,6 +21,8 @@
 
 #include <cstddef>
 
+#include <nmpp/copy_matrix.hpp>
+
 namespace nmpp {
 
 namespace detail {

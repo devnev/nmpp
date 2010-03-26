@@ -3,17 +3,17 @@ default: test
 
 TESTS=auto_matrix_members offset_op step_op limit_op
 TEST_OBJECTS=$(TESTS:=.o)
-TEST_DEPS=$(TESTS:=.d)
+TEST_DEPS=$(patsubst %,.%.d,$(TESTS))
 RM ?= rm -f
 
 CPPFLAGS=-I. -I../.. -DBOOST_TEST_DYN_LINK=1
 CXXFLAGS=-g -Wall
 LDFLAGS=-lboost_unit_test_framework
 
--include test_runner.d $(TEST_DEPS)
+-include .test_runner.d $(TEST_DEPS)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LD_FLAGS) $(ARCH_FLAGS) $< $(LOADLIBES) $(LDLIBS) -c -o $@ -MMD -MP
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LD_FLAGS) $(ARCH_FLAGS) $< $(LOADLIBES) $(LDLIBS) -c -o $@ -MMD -MP -MF .$*.d
 
 test_runner: test_runner.o $(TEST_OBJECTS)
 
@@ -29,5 +29,8 @@ test:
 
 clean:
 	$(RM) test_output test_runner test_runner.o $(TEST_OBJECTS) || true
+
+reallyclean: clean
+	$(RM) $(TEST_DEPS)
 
 .PHONY: default reset-tests test clean

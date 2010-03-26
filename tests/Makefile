@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 default: test
 
-TESTS=auto_matrix_members offset_op step_op limit_op
+TESTS=auto_matrix_members offset step limit
 TEST_OBJECTS=$(TESTS:=.o)
 TEST_DEPS=$(patsubst %,.%.d,$(TESTS))
 RM ?= rm -f

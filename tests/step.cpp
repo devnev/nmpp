@@ -28,15 +28,17 @@ using namespace nmpp;
 
 typedef boost::mpl::list< double, int, std::complex<float> > test_types;
 
-BOOST_AUTO_TEST_SUITE( OffsetOp )
+BOOST_AUTO_TEST_SUITE( Step )
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( CreateIgnore, T, test_types )
 {
-	T a[] = { T(3), T(23), T(17), T(11), T(51), T(97), T(397), T(511) };
-	weak_matrix<T> m(a, 4, 2);
-	BOOST_CHECK_NO_THROW( offset(m, 1, 0) );
-	BOOST_CHECK_EQUAL( offset(m, 1, 0)(0, 0), T(23) );
-	BOOST_CHECK_EQUAL( offset(m, 1, 0)(0, 1), T(97) );
+	T a[] = { T(3), T(23), T(17), T(11), T(51), T(97) };
+	weak_matrix<T> m(a, 3, 2);
+	BOOST_CHECK_NO_THROW( step(m, 1, 2) );
+	BOOST_CHECK_EQUAL( step(m, 2, 1)(0, 0), T(3) );
+	BOOST_CHECK_EQUAL( step(m, 2, 1)(1, 0), T(17) );
+	BOOST_CHECK_EQUAL( step(m, 2, 1)(0, 1), T(11) );
+	BOOST_CHECK_EQUAL( step(m, 2, 1)(1, 1), T(97) );
 }
 
 BOOST_AUTO_TEST_SUITE_END()

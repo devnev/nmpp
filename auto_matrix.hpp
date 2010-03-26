@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <cstddef>
 
-#include <nmpp/copy_matrix.hpp>
+#include <nmpp/util.hpp>
 
 namespace nmpp {
 

@@ -22,7 +22,7 @@
 #include <cstddef>
 #include <limits>
 
-#include <nmpp/copy_matrix.hpp>
+#include <nmpp/util.hpp>
 
 namespace nmpp {
 

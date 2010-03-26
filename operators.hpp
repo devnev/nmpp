@@ -25,7 +25,7 @@
 #include <algorithm>
 #include <functional>
 
-#include <nmpp/copy_matrix.hpp>
+#include <nmpp/util.hpp>
 
 namespace nmpp {
 

@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <cstddef>
 
-#include <nmpp/copy_matrix.hpp>
+#include <nmpp/util.hpp>
 #include <nmpp/auto_matrix.hpp>
 #include <nmpp/weak_matrix.hpp>
 #include <nmpp/sub_matrix.hpp>

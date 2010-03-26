@@ -31,8 +31,9 @@ template<class MatrixT>
 class transpose_op
 {
 	typedef MatrixT matrix_type;
-	typedef typename add_const<matrix_type>::type const_matrix_type;
-	typedef detail::matrix_ref<matrix_type> target_reference;
+	typedef typename detail::add_const<matrix_type>::type const_matrix_type;
+	typedef typename detail::matrix_ref<matrix_type>::type target_reference;
+
 public:
 
 	typedef typename MatrixT::value_type value_type;

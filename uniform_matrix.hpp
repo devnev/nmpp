@@ -39,10 +39,10 @@ public:
 	typedef this_type matrix_ref;
 	typedef this_type matrix_const_ref;
 
-	uniform_matrix(value_type uniform) : _uniform(uniform) { }
-	uniform_matrix(const this_type& other) : _uniform(other._uniform) { }
+	uniform_matrix(value_type value) : _value(value) { }
+	uniform_matrix(const this_type& other) : _value(other._value) { }
 
-	const_reference operator()(size_t x, size_t y) const { (void)x; (void)y; return _uniform; }
+	const_reference operator()(size_t x, size_t y) const { (void)x; (void)y; return _value; }
 
 	size_t width() { return std::numeric_limits<size_t>::max(); }
 	size_t height() { return std::numeric_limits<size_t>::max(); }
@@ -60,3 +60,5 @@ uniform(const T& value) {
 }
 
 } // end namespace nmpp
+
+#endif // NMPP_UNIFORM_MATRIX_HPP

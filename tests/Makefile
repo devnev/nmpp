@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 default: test
 
-TESTS=auto_matrix_members offset step limit transpose
+TESTS=auto_matrix_members offset step limit transpose uniform_matrix
 TEST_OBJECTS=$(TESTS:=.o)
 TEST_DEPS=$(patsubst %,.%.d,$(TESTS))
 RM ?= rm -f

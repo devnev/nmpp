@@ -116,7 +116,7 @@ private:
 	const size_t _step_x, _step_y;
 };
 
-template<class Matrix>
+template<class MatrixT>
 class limit_op
 {
 	typedef MatrixT matrix_type;
@@ -136,8 +136,8 @@ public:
 		: _matrix(matrix), _width(matrix.width()), _height(matrix.height()) { }
 	limit_op(matrix_type& matrix, size_t width, size_t height)
 		: _matrix(matrix), _width(width), _height(height) {
-		assert(matrix.width() <= _width);
-		assert(matrix.height() <= _height);
+		assert(_width <= matrix.width());
+		assert(_height <= matrix.height());
 	}
 	limit_op(const this_type& other)
 		: _matrix(other._matrix), _width(other._width), _height(other._height) { }

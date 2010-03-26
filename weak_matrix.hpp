@@ -40,7 +40,7 @@ public:
 	typedef const T* const_array_type;
 	typedef weak_matrix<T> this_type;
 	typedef this_type matrix_ref;
-	typedef weak_matrix<typename add_const<T>::type> matrix_const_ref;
+	typedef weak_matrix<typename detail::add_const<T>::type> matrix_const_ref;
 
 	weak_matrix() : _array(0), _width(0), _height(0) { }
 	weak_matrix(array_type array, size_t width, size_t height) : _array(array), _width(width), _height(height) { }

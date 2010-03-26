@@ -1,12 +1,13 @@
 #!/usr/bin/make -f
 default: test
 
-TESTS=auto_matrix_members
+TESTS=auto_matrix_members offset_op step_op limit_op
 TEST_OBJECTS=$(TESTS:=.o)
 TEST_DEPS=$(TESTS:=.d)
 RM ?= rm -f
 
 CPPFLAGS=-I. -I../.. -DBOOST_TEST_DYN_LINK=1
+CXXFLAGS=-g -Wall
 LDFLAGS=-lboost_unit_test_framework
 
 -include test_runner.d $(TEST_DEPS)
